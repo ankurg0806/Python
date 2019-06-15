@@ -30,8 +30,11 @@ def largestRange(array):
     for num in array:
         nums[num] = True
     for num in array:
+        # if this key is already traversed, do nothing
         if not nums[num]:
             continue
+        # mark it as traversed and try to go to left and right of this key to see whether it's immediate numbers exist in array or not
+        # and increase the counter accordingly if they are found
         nums[num] = False
         count = 1
         left = num - 1
@@ -42,6 +45,8 @@ def largestRange(array):
         while right in nums:
             count += 1
             right += 1
+        # For each range found, compare whether it's size is greater than the currently stored maxLength or not, if yes store the left most and right most 
+        # number of the range in outputRange
         if count > maxLength:
             maxLength = count
             outputRange = [left + 1, right - 1]
